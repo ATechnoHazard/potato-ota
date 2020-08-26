@@ -3,3 +3,5 @@
 docker-stack.yml
 .env
 .idea
+__pycache__
+*.pyc
