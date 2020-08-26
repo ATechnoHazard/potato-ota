@@ -1,17 +1,27 @@
 from typing import Optional
 
-from pydantic import BaseModel
+from pydantic import BaseModel, UUID4, HttpUrl
 
 
 # Shared properties
 class ItemBase(BaseModel):
-    title: Optional[str] = None
-    description: Optional[str] = None
+    url: HttpUrl
+    build_date: int
+    build_type: str
+    device: str
+    dish: str
+    downloads: int
+    filename: str
+    md5: str
+    notes: Optional[str]
+    size: int
+    version: str
 
 
 # Properties to receive on item creation
 class ItemCreate(ItemBase):
-    title: str
+    user: UUID4
+    pass
 
 
 # Properties to receive on item update
@@ -21,9 +31,8 @@ class ItemUpdate(ItemBase):
 
 # Properties shared by models stored in DB
 class ItemInDBBase(ItemBase):
-    id: int
-    title: str
-    owner_id: int
+    id: UUID4
+    user: UUID4
 
     class Config:
         orm_mode = True

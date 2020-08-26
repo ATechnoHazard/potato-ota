@@ -6,7 +6,7 @@ from app.core.config import settings
 
 
 def test_celery_worker_test(
-    client: TestClient, superuser_token_headers: Dict[str, str]
+        client: TestClient, superuser_token_headers: Dict[str, str]
 ) -> None:
     data = {"msg": "test"}
     r = client.post(
